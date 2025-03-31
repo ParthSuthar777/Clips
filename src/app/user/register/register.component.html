@@ -1,0 +1,105 @@
+<form [formGroup]="resgisterGroup" (ngSubmit)="registerUser()">
+    <!-- Name -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Name</label>
+      <input formControlName="name" type="text"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+        placeholder="Enter Name" />
+        <!-- Validations -->
+        <ng-container *ngIf="resgisterGroup.controls.name.touched && resgisterGroup.controls.name.dirty">
+            <p *ngIf="resgisterGroup.controls.name.errors?.required "
+            class = "text-red-400">Name field is required
+            </p>
+            <p *ngIf="resgisterGroup.controls.name.errors?.minlength "
+            class = "text-red-400">The value you inputted is {{resgisterGroup.controls.name?.errors?.minlength.actualLength}} character long.
+            It should be {{resgisterGroup.controls.name?.errors?.minlength.requiredLength}}  character long.
+            </p>
+        </ng-container>
+        
+    </div>
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Email</label>
+      <input formControlName="email" type="email"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+        placeholder="Enter Email" />
+
+         <!-- Validations -->
+         <ng-container *ngIf="resgisterGroup.controls.email.touched && resgisterGroup.controls.email.dirty">
+            <p *ngIf="resgisterGroup.controls.email.errors?.required "
+            class = "text-red-400">Email field is required
+            </p>
+            <p *ngIf="resgisterGroup.controls.email.errors?.email "
+            class = "text-red-400"> Entered email is Invalid
+            </p>
+        </ng-container>
+    </div>
+    <!-- Age -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Age</label>
+      <input formControlName ="age" type="number"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" />
+           <!-- Validations -->
+         <ng-container *ngIf="resgisterGroup.controls.age.touched && resgisterGroup.controls.age.dirty">
+            <p *ngIf="resgisterGroup.controls.age.errors?.required "
+            class = "text-red-400">Age field is required
+            </p>
+            <p *ngIf="resgisterGroup.controls.age.errors?.min || resgisterGroup.controls.age.errors?.max "
+            class = "text-red-400"> Invalid age! Age should be in the range of 18 to 100
+            </p>
+        </ng-container>
+    </div>
+    <!-- Password -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Password</label>
+      <input formControlName="password" type="password"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+        placeholder="Password" />
+           <!-- Validations -->
+           <ng-container *ngIf="resgisterGroup.controls.password.touched && resgisterGroup.controls.password.dirty">
+            <p *ngIf="resgisterGroup.controls.password.errors?.required "
+            class = "text-red-400">Password field is required
+            </p>
+            <p *ngIf="resgisterGroup.controls.password.errors?.pattern"
+            class = "text-red-400">Password should be strong
+            </p>
+        </ng-container>
+    </div>
+    <!-- Confirm Password -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Confirm Password</label>
+      <input formControlName="confirm_password" type="password"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+        placeholder="Confirm Password" />
+          <!-- Validations -->
+          <ng-container *ngIf="resgisterGroup.controls.confirm_password.touched && resgisterGroup.controls.confirm_password.dirty">
+            <p *ngIf="resgisterGroup.controls.confirm_password.errors?.required "
+            class = "text-red-400">Confirm Password field is required
+            </p>
+        </ng-container>
+    </div>
+    <!-- Phone Number -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Phone Number</label>
+      <input formControlName="phoneNumber" [mask] = "moNumFormat" type="text"
+        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+        placeholder="Enter Phone Number" />
+         <!-- Validations -->
+         <ng-container *ngIf="resgisterGroup.controls.phoneNumber.touched && resgisterGroup.controls.phoneNumber.dirty">
+          <p *ngIf="resgisterGroup.controls.phoneNumber.errors?.required "
+          class = "text-red-400">Phone Number field is required
+          </p>
+      </ng-container>
+    </div>
+    <button type="submit"
+      class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+        hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400" [disabled]="resgisterGroup.invalid">
+      Submit
+    </button>
+  </form>
