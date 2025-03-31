@@ -20,7 +20,7 @@ import { TabComponent } from './tab/tab.component';
     ModelComponent,
     TabsContainerComponent,
     TabComponent
-  ],
+  ]
   // providers:[
   //   ModelService
   // ]
